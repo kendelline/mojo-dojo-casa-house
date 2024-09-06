@@ -1,2 +1,4 @@
 Welcome to Mojo Dojo Casa House 🥹
-<img src="static/CasaHouse.png" width="100" height="100">
+
+
+<img src="static/CasaHouse.png" width="960" height="480">
