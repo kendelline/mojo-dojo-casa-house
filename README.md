@@ -102,7 +102,7 @@
 19. Melakukan _deploy app_ ke situs Pacil Web Server (PWS)
 
 ### Bagan _Request Client_ ke _Web_ Aplikasi berbasis Django
-<img src="static/BaganDjango.png" width="1000" height="333">
+<img src="static/BaganDjango.png" width="500" height="375">
 
 _Request_ dari pengguna akan diproses terlebih dahulu sebelum diteruskan ke View yang tepat. View tersebut kemudian akan mengakses atau memodifikasi data di Model dan menggunakan Template untuk menampilkan dan mengirimkan respons kembali ke pengguna.
 
