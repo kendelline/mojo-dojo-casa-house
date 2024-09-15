@@ -1,5 +1,100 @@
-<h1>Mojo Dojo Casa House 🕺🏻💃🏻</h1>
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    body {
+        background-color: #FFE0E9; /* Light pink background */
+        font-family: 'Arial', sans-serif;
+    }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        padding-bottom: 40px;
+    }
+    .header {
+        color: #D52885; /* Barbie pink */
+        text-shadow: 1px 1px #ffffff;
+    }
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .table th, .table td {
+        text-align: left;
+        padding: 8px;
+    }
+    .table thead {
+        background-color: #FADADD; /* Light Barbie pink */
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #ffffff;
+    }
+    .table-striped tbody tr:nth-of-type(even) {
+        background-color: #FBE4F1; /* Very light pink */
+    }
+    .btn-primary {
+        background-color: #D52885;
+        border: none;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        color: #ffffff;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        margin-top: 30px;
+    }
+    .btn-primary:hover {
+        background-color: #BB2265; /* Darker pink */
+    }
+    .user-info strong {
+        color: #333333;
+    }
+</style>
 
-<h3>Welcome to our online shop! </h3>
-<p>Username: {{ name }}</p>
-<p>Class: {{ class }}</p>
+<div class="container mt-5">
+    <h1 class="text-center header">Mojo Dojo Casa House 🕺🏻💃🏻</h1>
+    <h3 class="text-center header">Welcome to our online shop!</h3>
+
+    <div class="user-info mb-4 text-center">
+        <p><strong>Username:</strong> {{ name }}</p>
+        <p><strong>Class:</strong> {{ class }}</p>
+    </div>
+
+    <h2 class="my-4 header">Product List</h2>
+    {% if not product_entries %}
+        <p class="text-muted text-center">No products available in the store.</p>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% comment %} Display product data below this line {% endcomment %}
+                    {% for product_entry in product_entries %}
+                    <tr>
+                        <td>{{ product_entry.name }}</td>
+                        <td>${{ product_entry.price }}</td>
+                        <td>{{ product_entry.description }}</td>
+                        <td>{{ product_entry.quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    <div class="text-center" style="margin-top: 50px;"> <!-- Adjusted inline margin -->
+        <a href="{% url 'main:add_product' %}" class="btn btn-primary">Add New Product</a>
+    </div>
+</div>
+{% endblock %}
