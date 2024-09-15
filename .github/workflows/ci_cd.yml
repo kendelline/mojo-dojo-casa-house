@@ -1,4 +1,4 @@
-name: Install Dependencies and Push to PWS
+name: Push to PWS
 on:
   push:
     branches: [ main ]
