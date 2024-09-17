@@ -41,14 +41,14 @@
     ```python
     python manage.py startapp main
     ```
-11. Mendaftarkan aplikasi ```main``` ke dalam ```setting.py```
+11. Mendaftarkan aplikasi ```main``` ke dalam ```settings.py```
     ```
     INSTALLED_APPS = [
     ...,
     'main'
     ]
     ```
-12. Mengisi berkas ```models.py``` pada direktori aplikasi ```main`` dengan kode:
+12. Mengisi berkas ```models.py``` pada direktori aplikasi ```main``` dengan kode:
     ```python
     from django.db import models
 
