@@ -41,5 +41,11 @@
     <div class="text-center" style="margin-top: 50px;"> <!-- Adjusted inline margin -->
         <a href="{% url 'main:add_product' %}" class="btn btn-primary">Add New Product</a>
     </div>
+    
+    <div class="text-center" style="margin-top: 20px;">
+        <a href="{% url 'main:logout' %}">
+            <button class="btn btn-danger">Logout</button>
+        </a>
+    </div>
 </div>
 {% endblock %}
