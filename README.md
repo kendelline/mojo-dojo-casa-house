@@ -316,3 +316,83 @@ Jika `csrf_token` tidak ditambahkan, aplikasi/website akan rentan terhadap seran
 #### 5. XML by ID
 ![](static/XMLbyID.png)
 </details>
+
+## Tugas 3
+<details>
+
+### Perbedaan antara `HttpResponseRedirect()` dan `redirect()`
+Di Django, keduanya digunakan untuk mengarahkan pengguna ke URL lain, tetapi ada beberapa perbedaan dalam cara penggunaannya:
+
+1. `HttpResponseRedirect()`
+
+- Tipe: Kelas yang menghasilkan objek respons HTTP.
+- Fungsi: Membuat respons HTTP yang mengarahkan pengguna ke URL tertentu.
+- Penggunaan: Saat menggunakan `HttpResponseRedirect()`, kamu perlu secara eksplisit memberikan URL atau path sebagai argumen.
+- Kelebihan: Dapat digunakan untuk mengarahkan ke URL absolut atau relatif.
+- Contoh:
+    ```python
+    from django.http import HttpResponseRedirect
+
+    def my_view(request):
+        return HttpResponseRedirect('/some-url/')
+    ```
+
+2. `redirect()`
+- Tipe: Fungsi shortcut bawaan Django yang lebih canggih.
+- Fungsi: Selain mengarahkan ke URL, `redirect()` juga dapat menerima beberapa jenis argumen seperti nama URL (dengan `reverse()` di belakang layar) atau objek model, yang membuatnya lebih fleksibel.
+- Kelebihan:
+Dapat menerima nama URL, objek model, atau string URL langsung, sehingga lebih efisien daripada menulis URL secara manual dan secara otomatis menggunakan mekanisme Django URL resolver untuk mencari path yang benar.
+- Contoh:
+    ```python
+    from django.shortcuts import redirect
+
+    def my_view(request):
+    return redirect('some-url-name')
+    ```
+    ```python
+    def my_view(request):
+    return redirect('main:show_item', item_id=42)
+    ```
+
+### Cara Kerja Penghubungan Model `Product` dengan `User`
+- Biasanya dilakukan menggunakan relasi _ForeignKey_ atau _ManyToManyField_, tergantung kebutuhan. 
+- Dengan _ForeignKey_, satu produk terkait dengan satu pengguna, sementara *ManyToManyField* memungkinkan banyak produk dimiliki oleh banyak pengguna. 
+- Relasi ini memungkinkan kita untuk mengakses data pengguna dari objek produk dan sebaliknya, melalui atribut otomatis yang dibuat oleh Django ORM.
+
+### Autentikasi vs Otorisasi
+Autentikasi merupakan proses untuk memverifikasi identitas pengguna. Dalam Django, ini berarti memastikan bahwa pengguna yang mengakses aplikasi benar-benar pengguna yang terdaftar. Sebaliknya, otorisasi adalah proses yang menentukan tindakan apa yang dapat atau tidak dapat dilakukan oleh pengguna setelah mereka berhasil diautentikasi, termasuk pengaturan hak akses dan izin pengguna.
+
+### Penggunaan Cookies dan Keamanannya
+Cookies adalah data kecil yang disimpan di perangkat pengguna oleh server web, digunakan untuk menyimpan informasi sesi atau preferensi pengguna antara kunjungan ke situs. Django menggunakan cookies untuk mengelola sesi, seperti menyimpan ID sesi pengguna.
+
+Karena data dalam cookies bisa diakses dan dimanipulasi, mereka rentan terhadap peretasan jika tidak diamankan. Untuk mitigasi, praktik terbaik meliputi mengenkripsi data, menggunakan atribut HttpOnly dan Secure, serta menyimpan data sesi sensitif di server, bukan di cookies.
+
+### Cara _Step by Step_ Mengimplementasikan _Checklist_ 
+1. Pada file `views.py` menambahkan fungsi `register`, `login_user`, dan `logout_user`.
+2. Membuat file baru pada `main/templates` bernama login serta laman-laman yang dimilikinya seperti `login.html` dan `register.html`.
+3. Melakukan _routing urls_ dari fungsi yang ada sehingga pengguna dapat mengakses halaman registrasi melalui URL tersebut.
+4. Mengimplementasikan cookie sehingga user masih berstatus login ketika menjelajahi laman utama pada file `views.py` dengan kode:
+    ```python
+    if form.is_valid():
+        user = form.get_user()
+        login(request, user)
+        response = HttpResponseRedirect(reverse("main:show_main"))
+        response.set_cookie('last_login', str(datetime.datetime.now()))
+        return response
+    ```
+    Tambahkan juga `last_login` ke dalam _context_ `show_main`
+    ```python
+    context = {
+        'name': request.user.username,
+        'class' : 'PBP C',
+        'product_entries': product_entries,
+        'last_login': request.COOKIES['last_login'],
+    }
+    ```
+5. Menambahkan ForeignKey untuk fungsi Product pada `models.py` dengan kode:
+    ```python
+    class Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ```
+6. Melakukan migrasi database untuk mensinkronkan database pada keseluruhan proyek.
+</details>
