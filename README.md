@@ -1,5 +1,5 @@
 # Welcome to Mojo Dojo Casa House 🕺🏻💃🏻
-<img src="static/CasaHouse.png" width="480" height="240">
+<img src="static/image/CasaHouse.png" width="480" height="240">
 
 ## Tugas 2
 <details>
@@ -104,7 +104,7 @@
 19. Melakukan _deploy app_ ke situs Pacil Web Server (PWS)
 
 ### Bagan _Request Client_ ke _Web_ Aplikasi berbasis Django
-<img src="static/BaganDjango.png" width="500" height="375">
+<img src="static/image/BaganDjango.png" width="500" height="375">
 
 _Request_ dari pengguna akan diproses terlebih dahulu sebelum diteruskan ke View yang tepat. View tersebut kemudian akan mengakses atau memodifikasi data di Model dan menggunakan Template untuk menampilkan dan mengirimkan respons kembali ke pengguna.
 
@@ -302,22 +302,22 @@ Jika `csrf_token` tidak ditambahkan, aplikasi/website akan rentan terhadap seran
 
 ### _Screenshot_ Postman
 #### 1. HTML Source
-![](static/HTMLsource.png)
+![](static/image/HTMLsource.png)
 
 #### 2. JSON
-![](static/JSON.png)
+![](static/image/JSON.png)
 
 #### 3. JSON by ID
-![](static/JSONbyID.png)
+![](static/image/JSONbyID.png)
 
 #### 4. XML
-![](static/XML.png)
+![](static/image/XML.png)
 
 #### 5. XML by ID
-![](static/XMLbyID.png)
+![](static/image/XMLbyID.png)
 </details>
 
-## Tugas 3
+## Tugas 4
 <details>
 
 ### Perbedaan antara `HttpResponseRedirect()` dan `redirect()`
@@ -395,4 +395,81 @@ Karena data dalam cookies bisa diakses dan dimanipulasi, mereka rentan terhadap 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ```
 6. Melakukan migrasi database untuk mensinkronkan database pada keseluruhan proyek.
+</details>
+
+## Tugas 5
+<details>
+
+### Urutan Prioritas CSS Selector
+1. Inline Styles: Gaya yang ditetapkan langsung di dalam elemen HTML menggunakan atribut `style`. Contoh: 
+    ```html
+    <div style="color: red;"></div>
+    ```
+2. IDs: Selector dengan ID (ditulis dengan `#`). Contoh: 
+    ```css
+    #myId { color: blue; }
+    ```
+3. Classes, Attributes, and Pseudo-classes: Selector yang menggunakan class `(.classname)`, atribut `([attribute=value])`, atau pseudo-class `(:hover, :focus)`. Contoh: 
+    ```css
+    .myClass { color: green; }
+    ```
+4. Elements and Pseudo-elements: Selector yang menggunakan tag HTML (seperti `div`, `p`, dll.) atau pseudo-element (`::before`, `::after`). Contoh: 
+    ```css
+    div { color: black; }
+    ```
+5. Universal Selector: Selector universal (`*`), yang berlaku untuk semua elemen, memiliki prioritas terendah. Contoh: 
+    ```css
+    * { margin: 0; }
+    ```
+### _Responsive Design_ itu Penting
+Responsive design sangat penting dalam pengembangan aplikasi web karena memungkinkan tampilan situs web disesuaikan dengan ukuran layar perangkat yang digunakan, seperti desktop, tablet, atau smartphone. Hal ini memastikan semua pengguna mendapatkan pengalaman yang konsisten dan optimal tanpa perlu memperbesar atau menggeser layar. Selain itu, mengembangkan satu situs responsif lebih efisien secara biaya dan waktu dibandingkan menciptakan versi terpisah untuk setiap perangkat.
+
+Contoh aplikasi yang sudah menerapkan _responsive design_:
+1. Facebook
+2. Amazon
+3. [scele.cs.ui.ac.id](scele.cs.ui.ac.id)
+
+Contoh aplikasi yang belum menerapkan _responsive design_:
+1. [dequeuniversity.com](https://dequeuniversity.com/library/responsive/1-non-responsive#)
+2. Beserta contoh lainnya yang kebanyakan merupakan laman (_website_) lama/jadul.
+
+### Margin, Border, dan Padding
+1. Margin: Ruang di luar batas elemen. Ini mengatur jarak antara elemen satu dengan yang lainnya.
+    ```css
+    .box {
+    margin: 20px; /* memberi jarak 20px di semua sisi */
+    }
+    ```
+2. Border: Garis yang mengelilingi elemen. Anda bisa mengatur ketebalan, jenis garis, dan warnanya.
+    ```css
+    .box {
+    border: 2px solid black; /* garis tebal 2px, solid, berwarna hitam */
+    }
+    ```
+3. Padding: Ruang di dalam batas elemen, antara konten dan border. Ini mengatur jarak antara konten dan tepi elemen.
+    ```css
+    .box {
+    padding: 10px; /* memberi jarak 10px di semua sisi konten */
+    }
+    ```
+Secara sederhana, urutan dari dalam ke luar adalah: konten > padding > border > margin.
+
+### Flexbox dan Grid Layout
+1. Flexbox: 
+- Dirancang untuk mengatur elemen dalam satu dimensi, baik horizontal maupun vertikal, dengan cara mengatur ruang di antara elemen dan mendistribusikan ruang kosong. Hal inini memudahkan penataan elemen seperti menu navigasi atau card.
+- Flexbox sangat berguna untuk meratakan elemen di tengah atau membuat tata letak responsif yang menyesuaikan dengan ukuran layar.
+
+2. Grid Layout:
+- Memungkinkan pembuatan tata letak dua dimensi, mengatur elemen dalam baris dan kolom. Dapat menciptakan desain yang lebih terstruktur dan kompleks, seperti halaman yang memiliki beberapa bagian (_header_, _sidebar_, _konten utama_, dan _footer_). 
+- Misalnya, jika kita ingin membuat halaman blog, kita bisa menggunakan Grid untuk menempatkan gambar, teks, dan sidebar dengan cara yang teratur dan mudah dibaca.
+s
+### Cara _Step by Step_ Mengimplementasikan _Checklist_ 
+1. Membuat fungsi `edit_product` dan `delete_product` pada `views.py`.
+2. Melakukan _routing_ untuk urls untuk kedua fungsi baru tersebut.
+3. Menambahkan Tailwind ke dalam aplikasi dalam `base.html`
+4. Membuat direktori `main/static/css` dengan _file_ `global.css` sebagai membantu meminimalkan penggunaan kode serta agar _styling_ tetap konsisten.
+5. Mengkustomisasi halaman _login_, _register_, dan _add product_ dengan _styling_ pada `main/templates` dengan CSS dan Tailwind.
+6. Pada direktori `main/templates`, membuat file `navbar.html` serta tidak lupa untuk menambahkan `{% include 'navbar.html' %}` pada tiap _page_ yang membutuhkan _navigation bar_
+7. Menambahkan informasi jika belum ada produk yang ditambahkan dan gambarnya pada `main.html`. 
+8. Menginisialisasi _file_ baru dengan nama `card_product.html` untuk menampilkan detail produk yang sudah ditambahkan dalam bentuk _card_.
 </details>
