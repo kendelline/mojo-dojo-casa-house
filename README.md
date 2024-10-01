@@ -431,6 +431,7 @@ Contoh aplikasi yang sudah menerapkan _responsive design_:
 
 Contoh aplikasi yang belum menerapkan _responsive design_:
 1. [dequeuniversity.com](https://dequeuniversity.com/library/responsive/1-non-responsive#)
+2. [siak.ng](academic.ui.ac.id)
 2. Beserta contoh lainnya yang kebanyakan merupakan laman (_website_) lama/jadul.
 
 ### Margin, Border, dan Padding
