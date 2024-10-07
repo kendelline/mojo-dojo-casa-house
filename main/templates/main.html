@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block meta %}
-<title>Product Tracker</title>  <!-- Mengganti judul halaman -->
+<title>Product Tracker</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
 {% endblock meta %}
 {% block content %}
 {% include 'navbar.html' %}
@@ -103,6 +103,8 @@
     } else {
         classNameString = "columns-1 sm:columns-2 lg:columns-3 gap-6 w-full";
         addProduct.forEach((item) => {
+          const name = DOMPurify.sanitize(item.fields.name);
+          const description = DOMPurify.sanitize(item.fields.description);
             htmlString += `
             <div class="relative break-inside-avoid">
                 <div class="relative top-5 bg-pink-100 shadow-md rounded-lg mb-6 break-inside-avoid flex flex-col border-2 border-pink-300 transform rotate-1 hover:rotate-0 transition-transform duration-300">
