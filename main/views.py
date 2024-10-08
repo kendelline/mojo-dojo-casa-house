@@ -4,7 +4,7 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.core import serializers
 from django.shortcuts import render, redirect, reverse
@@ -111,6 +111,12 @@ def add_product_ajax(request):
     price = request.POST.get("price")
     description = strip_tags(request.POST.get("description"))
     quantity = request.POST.get("quantity")
+
+    if not name:
+        return JsonResponse({"error": "Name cannot be blank"}, status=400)
+    if not description:
+        return JsonResponse({"error": "Description cannot be blank"}, status=400)
+
     user = request.user
 
     new_product = Product(
@@ -121,5 +127,4 @@ def add_product_ajax(request):
     )
     new_product.save()
 
-    return HttpResponse(b"CREATED", status=201)
-    ...
+    return JsonResponse({"success": "Product created"}, status=201)

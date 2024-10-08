@@ -463,7 +463,7 @@ Secara sederhana, urutan dari dalam ke luar adalah: konten > padding > border > 
 2. Grid Layout:
 - Memungkinkan pembuatan tata letak dua dimensi, mengatur elemen dalam baris dan kolom. Dapat menciptakan desain yang lebih terstruktur dan kompleks, seperti halaman yang memiliki beberapa bagian (_header_, _sidebar_, _konten utama_, dan _footer_). 
 - Misalnya, jika kita ingin membuat halaman blog, kita bisa menggunakan Grid untuk menempatkan gambar, teks, dan sidebar dengan cara yang teratur dan mudah dibaca.
-s
+
 ### Cara _Step by Step_ Mengimplementasikan _Checklist_ 
 1. Membuat fungsi `edit_product` dan `delete_product` pada `views.py`.
 2. Melakukan _routing_ untuk urls untuk kedua fungsi baru tersebut.
@@ -473,4 +473,39 @@ s
 6. Pada direktori `main/templates`, membuat file `navbar.html` serta tidak lupa untuk menambahkan `{% include 'navbar.html' %}` pada tiap _page_ yang membutuhkan _navigation bar_
 7. Menambahkan informasi jika belum ada produk yang ditambahkan dan gambarnya pada `main.html`. 
 8. Menginisialisasi _file_ baru dengan nama `card_product.html` untuk menampilkan detail produk yang sudah ditambahkan dalam bentuk _card_.
+</details>
+
+## Tugas 6
+<details>
+
+### Manfaat Penggunaan JavaScript dalam Pengembangan Aplikasi Web
+JavaScript memungkinkan interaktivitas di halaman web, seperti validasi form secara real-time, manipulasi DOM, animasi, dan AJAX untuk pengambilan data tanpa me-refresh halaman. Ini meningkatkan user experience dan membuat aplikasi web lebih dinamis.
+
+### Fungsi `await` pada `fetch()`:
+`await` digunakan untuk menunggu hingga `fetch()` selesai dan mengembalikan respons sebelum kode berikutnya dieksekusi. Jika kita tidak menggunakan await, kode selanjutnya akan dijalankan sebelum hasil dari `fetch()` siap, yang dapat menyebabkan bug atau error.
+
+### Mengapa Menggunakan `csrf_exempt` pada AJAX POST
+`csrf_exempt` digunakan untuk menonaktifkan validasi CSRF pada view yang menerima request AJAX. Hal ini diperlukan karena request AJAX default-nya tidak menyertakan token CSRF, yang dapat menyebabkan request ditolak oleh server tanpa decorator ini.
+
+### Mengapa Data Input Juga Dibersihkan di Backend
+Pembersihan data di _backend_ penting untuk keamanan. _Frontend_ bisa dimanipulasi oleh pengguna, jadi _backend_ bertindak sebagai pertahanan terakhir untuk mencegah serangan seperti XSS atau SQL Injection.
+
+### Cara _Step by Step_ Mengimplementasikan _Checklist_ 
+1. Menambahkan _message error_ pada _function_ `views.py` yaitu `login_user`.
+2. Membuat fungsi untuk menambahkan _product_ dengan AJAX dengan cara mengimpor dan menambahkan `add_product_ajax(request)` pada `views.py` 
+3. _Routing_ pada `urls.py` untuk fungsi diatas.
+4. Menampilkan data _product_ dengan `fetch()` API dengan mengahapus `product_entry` dalam `views.py`
+5. Lalu tambahkan pada fungsi `show_json` serta `show_xml` di berkas `views.py`
+    ```python
+    data = Product.objects.filter(user=request.user)
+    ```
+6. Pada berkas `main.html` menambahkan block `<script>` dengan inisialisasi fungsi 
+    - `addProductEntry()`
+    - `showError(field, message)`
+    - `clearError(field)`
+    - `handleBackendErrors(errorMessage)`
+    - `getAddProduct()`
+    - `refreshAddProduct()`
+    - `show_modal()`
+    - `hide_modal()`
 </details>
