@@ -494,7 +494,7 @@ Pembersihan data di _backend_ penting untuk keamanan. _Frontend_ bisa dimanipula
 1. Menambahkan _message error_ pada _function_ `views.py` yaitu `login_user`.
 2. Membuat fungsi untuk menambahkan _product_ dengan AJAX dengan cara mengimpor dan menambahkan `add_product_ajax(request)` pada `views.py` 
 3. _Routing_ pada `urls.py` untuk fungsi diatas.
-4. Menampilkan data _product_ dengan `fetch()` API dengan mengahapus `product_entry` dalam `views.py`
+4. Menampilkan data _product_ dengan `fetch()` API dengan menghapus `product_entry` dalam `views.py`
 5. Lalu tambahkan pada fungsi `show_json` serta `show_xml` di berkas `views.py`
     ```python
     data = Product.objects.filter(user=request.user)
